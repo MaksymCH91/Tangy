@@ -1,0 +1,9 @@
+﻿@if (IsActiv)
+{
+<Input typeof="button" class="btn-danger" stale="width:100px;" value="delate" />
+<Input typeof="button" class="btn-success" stale="width:100px;" value="edit" />
+}
+@code {
+    [Parameter]
+    public bool IsActiv { get; set; }
+}

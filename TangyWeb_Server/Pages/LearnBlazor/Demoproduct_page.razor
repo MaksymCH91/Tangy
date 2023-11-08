@@ -1,0 +1,81 @@
+﻿@page "/LearnBlazor/Demoproduct"
+<h3>Demoproduct</h3>
+<p>Favvorites Total : @SelectFavoriteCount</p>
+<div class="Border p-2 mt-2" style="background-color:azure">
+
+</div>
+    <div class="row">
+        @foreach (var item in Products)
+    {
+        <_ProductCard ProductItem="@item" OnFavoriteUpdated="FavoriteCountupdate">
+            <FirstFragment>#1</FirstFragment>
+            <SecondFragment>#2</SecondFragment>
+        </_ProductCard>
+        
+    }
+    </div>
+       
+
+@code {
+    private int SelectFavoriteCount { get; set; } = 0;
+    private string selectedProp = "";
+    Tandy_models.LearnBlazorModels.Demoproduct Product = new()
+        {
+            Id = 1,
+            Name = "Rose Candle",
+            IsActiv = true,
+            Price = 10.99,
+            ProductProperies = new List<Demo_productprops>()
+        {
+        new Demo_productprops { Id = 1, Key = "Color", Value = "Black" },
+        new Demo_productprops { Id = 2, Key = "Flavor", Value = "Rose Jasmine" },
+        new Tandy_models.LearnBlazorModels.Demo_productprops { Id = 3, Key = "Size", Value = "20oz" },
+        }
+
+        };
+    List<Demoproduct> Products = new();
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Products.Add(new()
+            {
+                Id = 1,
+                Name = "Midnight Blaze",
+                IsActiv = false,
+                Price = 8,
+                ProductProperies = new()
+
+        {
+        new Demo_productprops { Id = 1, Key = "Flavor", Value = "Rose"},
+        new Demo_productprops { Id = 2, Key = "Size", Value = "20oz"},
+        new Demo_productprops { Id = 3, Key = "Color", Value="Purple" }
+        }
+            });
+
+        Products.Add(new()
+            {
+                Id = 2,
+                Name = "Blossom Lily",
+                IsActiv = true,
+                Price = 13,
+                ProductProperies = new()
+        {
+        new Demo_productprops { Id = 1, Key = "Flavor", Value = "Lily" },
+        new Demo_productprops { Id = 2, Key = "Size", Value = "18oz" },
+        new Demo_productprops {Id = 3,Key = "Color",Value = "White"}
+        }
+            });
+    }
+    protected void FavoriteCountupdate(bool isSelected)
+    {
+        if (isSelected)
+        {
+            SelectFavoriteCount++;
+        }
+        else
+        {
+            SelectFavoriteCount--;
+        }
+    }
+}
+        

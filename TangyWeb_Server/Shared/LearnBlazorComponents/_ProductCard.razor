@@ -1,0 +1,36 @@
+﻿
+<div class="bg-light border m-1 col-5">
+    <h4 class="text-secondary">Product-@ProductItem.Id</h4>
+    <Input type="checkbox" @onchange="FavoriteUpdated"/> add to favorite   <br /> <br />
+    Name - @ProductItem.Name<br />
+    <p>RF from parent @FirstFragment @SecondFragment</p>
+
+    Show Properties:
+    <input type="checkbox" @bind-value="ProductItem.IsActiv" checked="@(ProductItem.IsActiv?"cheked":null)">
+    
+    @if (ProductItem.IsActiv)
+    {
+        @foreach (var prop in ProductItem.ProductProperies)
+        {
+            <p>@prop.Key- @prop.Value</p>
+        }
+    }
+    <br />
+    <_EditDelateButton IsActiv="@ProductItem.IsActiv"></_EditDelateButton>
+</div>
+
+@code {
+    [Parameter]
+    public Demoproduct ProductItem { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnFavoriteUpdated { get; set; }
+    private async Task FavoriteUpdated(ChangeEventArgs e)
+    {
+        await OnFavoriteUpdated.InvokeAsync((bool)e.Value);
+    }
+    [Parameter]
+    public RenderFragment FirstFragment { get; set; }
+    [Parameter]
+    public RenderFragment SecondFragment { get; set; }
+}
