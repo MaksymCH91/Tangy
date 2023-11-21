@@ -5,8 +5,12 @@
     <button class="btn btn-secondary" @onclick="TestConfirmBox"> Test Confirm Button</button>
 </div>
 <div class="row">
-    <button class="btn btn-success" @onclick="ToastrSuccess"> Toastr Success</button>
-    <button class="btn btn-danger" @onclick="Toastrfailure"> Toastr failure</button>
+    <button class="btn btn-success" style="Width:200px" @onclick="ToastrSuccess"> Toastr Success</button>
+    <button class="btn btn-danger"  style="Width:200px" @onclick="ToastrFailure"> Toastr failure</button>
+</div>
+<div class="row">
+    <button class="btn btn-success" style="Width:200px" @onclick=" SweetAlertSuccess"> Toastr Success</button>
+    <button class="btn btn-danger" style="Width:200px" @onclick="SweetAlertFailure"> Toastr failure</button>
 </div>
 <div class="row">
     @if (ConfirmResult)
@@ -32,10 +36,18 @@
         await _JsRuntime.ToastrSuccess("Operation Successful");
        
     }
-    private async Task Toastrfailure()
+    private async Task ToastrFailure()
     {
         await _JsRuntime.InvokeVoidAsync("Window.ShowToastr", "error", "Error");
     }
 
+    private async Task SweetAlertSuccess()
+    {
+        await _JsRuntime.InvokeVoidAsync("Window.ShowSwal", "success", "Task completed successfully!");
+    }
+    private async Task SweetAlertFailure()
+    {
+        await _JsRuntime.InvokeVoidAsync("Window.ShowSwal", "error", "Task failed");
+    }
+
 }
-e
