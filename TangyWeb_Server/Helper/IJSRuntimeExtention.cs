@@ -6,7 +6,8 @@ namespace TangyWeb_Server.Helper
     {
         public static async ValueTask ToastrSuccess(this IJSRuntime jsRuntime, string message)
         {
-            await jsRuntime.InvokeVoidAsync("ShowToasrt","Success", message);
+            await jsRuntime.InvokeVoidAsync("Window.ShowToastr", "success", message);
+            
         }
     }
 }

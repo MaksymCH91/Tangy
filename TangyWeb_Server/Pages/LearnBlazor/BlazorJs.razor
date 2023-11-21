@@ -30,10 +30,12 @@
     private async Task ToastrSuccess()
     {
         await _JsRuntime.ToastrSuccess("Operation Successful");
+       
     }
     private async Task Toastrfailure()
     {
-        await _JsRuntime.InvokeVoidAsync("ShowToasrt", "error", "Error");
+        await _JsRuntime.InvokeVoidAsync("Window.ShowToastr", "error", "Error");
     }
 
 }
+e
